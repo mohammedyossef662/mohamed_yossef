@@ -200,6 +200,30 @@ body {
 }
 .badge:hover { border-color: var(--accent-2); background: rgba(167, 139, 250, 0.1); color: var(--accent-2); }
 
+/* ---------- Projects ---------- */
+.projects-grid { display: grid; gap: 1.4rem; }
+.project-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.8rem; position: relative; overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.project-card::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 3px;
+  background: var(--gradient); opacity: 0.9;
+}
+.project-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.project-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
+.project-icon {
+  display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0;
+  font-size: 1.25rem; border-radius: 10px;
+  background: rgba(34, 211, 238, 0.08); border: 1px solid var(--border);
+}
+.project-card h3 { font-size: 1.2rem; }
+.project-desc { color: var(--muted); margin-bottom: 1rem; }
+.project-points { padding-left: 1.2rem; color: var(--muted); font-size: 0.95rem; margin-bottom: 1.2rem; }
+.project-points li { margin-bottom: 0.4rem; }
+.project-tech { margin-top: auto; }
+
 /* ---------- Courses ---------- */
 .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
 .cert-card {
