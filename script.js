@@ -22,16 +22,25 @@ on(document.getElementById("navbar"), (navbar) => {
 on(document.getElementById("hamburger"), (hamburger) => {
   const navLinks = document.getElementById("navLinks");
   if (!navLinks) return;
+  const setMenuOpen = (isOpen) => {
+    hamburger.classList.toggle("active", isOpen);
+    navLinks.classList.toggle("open", isOpen);
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+    hamburger.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+  };
+
   hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navLinks.classList.toggle("open");
+    setMenuOpen(hamburger.getAttribute("aria-expanded") !== "true");
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && hamburger.getAttribute("aria-expanded") === "true") {
+      setMenuOpen(false);
+      hamburger.focus();
+    }
   });
   // Close menu when a link is clicked
   navLinks.querySelectorAll("a").forEach((link) =>
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      navLinks.classList.remove("open");
-    })
+    link.addEventListener("click", () => setMenuOpen(false))
   );
 });
 
